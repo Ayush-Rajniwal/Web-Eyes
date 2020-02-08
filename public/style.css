@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  main {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 25% 75%;
+  }
+  
+  .child1 {
+    font-size: x-large;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #f06060;
+    -webkit-user-select: none;
+  }
+  
+  .child2 {
+    font-size: x-large;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #fa987d;
+    -webkit-user-select: none;
+  }
+  
+  .child3 {
+    background-color: #72cca7;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  

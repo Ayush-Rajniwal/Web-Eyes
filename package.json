@@ -1,0 +1,21 @@
+{
+  "name": "blind",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bro.js",
+  "scripts": {
+    "start": "nodemon bro"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "morse": "^0.1.0",
+    "nodemon": "^2.0.2",
+    "puppeteer": "^2.1.0",
+    "say": "^0.16.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {}
+}
