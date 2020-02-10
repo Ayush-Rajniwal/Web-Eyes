@@ -6,7 +6,7 @@ WebEyes is an initiative to provide a tool to blind people to make the web more 
 ## Installation
 1. You should have [Chrome](https://www.google.com/intl/en_uk/chrome/) installed on your system.
 2. Chrome should be install at its default loaction *(C:/Program Files (x86)/Google/Chrome/Application/)*.
-3. Download the Web-Eye.exe installer from here.
+3. Download the Web-Eye.exe installer from [here](https://github.com/Ayush-Rajniwal/Web-Eyes/releases/).
 
 ## Concept
 * Application use **Morse Code** to Aid blind people in **typing**.
