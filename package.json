@@ -5,7 +5,6 @@
   "main": "bro.js",
   "scripts": {
     "start": "nodemon bro",
-    "pkg": "pkg --target=win -o app.out bro.js"
   },
   "author": "",
   "license": "ISC",

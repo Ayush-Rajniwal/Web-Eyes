@@ -1,3 +1,13 @@
+/**
+ * Author: Ayush Rajniwal
+ * Project Name: Web Eyes
+ * Github Link: https://github.com/Ayush-Rajniwal/Web-Eyes
+ * 
+ * Tip:
+ * Uncomment console.log() to better debug this application.
+ */
+
+
 const puppeteer = require('puppeteer');
 let say = require('say');
 var morse = require('morse');
@@ -32,6 +42,7 @@ io.on('connection', async function (socket) {
 
    console.log("A Device Connected");
 
+   //Start Puppeteer
    const browser = await puppeteer.launch({
       headless: false,
       defaultViewport: null,
@@ -41,13 +52,13 @@ io.on('connection', async function (socket) {
          //  '--start-fullscreen'
       ]
    });
+
    const page = await browser.newPage();
-   const waitForLoad = new Promise(resolve => page.on('load', () => resolve()));
 
    await page.goto('https://www.google.com')
       .then(async () => {
          say.speak(await page.title())
-      })
+   });
 
    socket.on('dash', () => {
       console.log('dash received');
@@ -60,7 +71,7 @@ io.on('connection', async function (socket) {
       incomingMsg += '.';
    });
 
-
+   //Execute for right swipe with 1 finger
    socket.on('letter', async () => {
       console.log(morse.decode(incomingMsg));
       await page.type('input[type=text]', morse.decode(incomingMsg), { delay: 100 });
@@ -68,24 +79,26 @@ io.on('connection', async function (socket) {
       incomingMsg = "";
    });
 
+   //Execute for left swipe with 1 finger
    socket.on('delete', async () => {
       console.log("deleting");
       say.speak("Deleting")
       await page.keyboard.press('Backspace');
    });
 
+   //Execute for Left swipe with 2 finger
    socket.on('left', async () => {
       console.log("Two Fingers Left...Going back");
       await page.goBack();
    });
 
+    //Execute for Right swipe with 2 finger
    socket.on('right', async () => {
       console.log("Two Fingers Right....Going Forward");
       await page.goForward();
    });
 
-
-
+    //Execute for Tap with 1 finger
    socket.on('enter', async () => {
       console.log("Enter Received");
       await page.keyboard.press('Enter');
