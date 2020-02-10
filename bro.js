@@ -2,12 +2,13 @@ const puppeteer = require('puppeteer');
 let say = require('say');
 var morse = require('morse');
 var express = require('express');
-var tr = require('./textRank');
-
+var ejs=require('ejs');
 
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
+var os = require('os');
 
 
 
@@ -29,11 +30,12 @@ app.get('/', (req, res) => {
 //Whenever someone connects this gets executed
 io.on('connection', async function (socket) {
 
-   console.log("Connected");
+   console.log("A Device Connected");
 
    const browser = await puppeteer.launch({
       headless: false,
       defaultViewport: null,
+      executablePath: 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
       args: [
          '--start-maximized', // you can also use '--start-fullscreen'
          //  '--start-fullscreen'
@@ -73,25 +75,25 @@ io.on('connection', async function (socket) {
    });
 
    socket.on('left', async () => {
-      console.log("two finger left....go back simon");
+      console.log("Two Fingers Left...Going back");
       await page.goBack();
    });
 
    socket.on('right', async () => {
-      console.log("two finger right....go forward my boy");
+      console.log("Two Fingers Right....Going Forward");
       await page.goForward();
    });
 
 
 
    socket.on('enter', async () => {
-      console.log("enter received");
+      console.log("Enter Received");
       await page.keyboard.press('Enter');
    });
 
    //two finger select
    socket.on('select', async () => {
-      console.log("select received");
+      console.log("Select Received");
       let title= await page.title();
       if(title.includes('- Google Search')){
          //on google search page....open link
@@ -101,26 +103,26 @@ io.on('connection', async function (socket) {
    }
       else{
          //on page link....open that link..
-         console.log("inside else");
-         console.log(tree.children[treePointer].role);
+         //console.log("inside else");
+         //console.log(tree.children[treePointer].role);
          var searchText = tree.children[treePointer].name;
          if(tree.children[treePointer].role=='link'){
             //open link only if it is a link
-            console.log("inside link");
+           // console.log("inside link");
             
             //fing the link on the page...and return it's url
        let r=  await page.evaluate((searchText)=>{
-         console.log(searchText);
+        // console.log(searchText);
          var linkArray= document.querySelectorAll('a');
          let toUrl;
          for(let i=0;i<linkArray.length;i++){
             if(linkArray[i].innerText == searchText){
-               console.log(linkArray[i]);
+               //console.log(linkArray[i]);
                toUrl=linkArray[i].href;
                break;
             }
          }
-         console.log(toUrl);
+       //  console.log(toUrl);
          return toUrl;
               
          },searchText);
@@ -128,7 +130,7 @@ io.on('connection', async function (socket) {
          say.stop(true);
          say.speak("Opening link "+searchText);
          await page.goto(r);
-         console.log("Result",r);
+       //  console.log("Result",r);
       }
       }
    });
@@ -157,7 +159,7 @@ io.on('connection', async function (socket) {
          say.speak("On Link. "+tree.children[treePointer].name)
          else
          say.speak(tree.children[treePointer].name);
-         console.log(tree.children[treePointer]);
+        // console.log(tree.children[treePointer]);
        
       }
    })
@@ -186,7 +188,7 @@ io.on('connection', async function (socket) {
       say.speak("On Link. "+tree.children[treePointer].name)
       else
       say.speak(tree.children[treePointer].name);
-      console.log(tree.children[treePointer]);
+    //  console.log(tree.children[treePointer]);
       
    }
    })
@@ -194,7 +196,7 @@ io.on('connection', async function (socket) {
 
    //Whenever someone disconnects close browser
    socket.on('disconnect', async function () {
-      console.log('A user disconnected');
+      console.log('A Device disconnected');
       await browser.close();
    });
 
@@ -215,13 +217,13 @@ io.on('connection', async function (socket) {
             });
             return linkName;
          })
-         console.log(gData);
+         //console.log(gData);
       }
       else {
          //When not on google search page...take snapshot of the page
          tree = await page.accessibility.snapshot();
-         console.log(tree);
-         console.log("-----------SnapShot done!!---------------");
+        // console.log(tree);
+        // console.log("-----------SnapShot done!!---------------");
          await new Promise(async function (resolve, reject) {
             for(let i=0;i<tree.children.length;i++){
                if(tree.children[i].role != 'heading')
@@ -239,5 +241,16 @@ io.on('connection', async function (socket) {
 
 
 http.listen(3000, function () {
-   console.log('listening on *:3000');
+   var interfaces = os.networkInterfaces();
+var addresses = [];
+for (var k in interfaces) {
+    for (var k2 in interfaces[k]) {
+        var address = interfaces[k][k2];
+        if (address.family === 'IPv4' && !address.internal) {
+            addresses.push(address.address);
+        }
+    }
+}
+   console.log('Open http://'+addresses[1]+':3000 in your phone');
+   console.log("Make sure your phone and computer are on the same network (i.e. on same wifi or hotspot)")
 });
