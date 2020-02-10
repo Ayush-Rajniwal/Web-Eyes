@@ -18,7 +18,8 @@ WebEyes is an initiative to provide a tool to blind people to make the web more 
 
 ## How To Use
 * **Interface**
-![Remote](/static/remote.png)
+
+    ![Remote](/static/remote.png)
 
 * **Gesture Controls**(Touch Pad)
     1. **Swipe right** with **1 finger** to complete a **letter** or to **give space**.
