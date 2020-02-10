@@ -10,7 +10,9 @@ WebEyes is an initiative to provide a tool to blind people to make the web more 
 
 ## Concept
 * Application use **Morse Code** to Aid blind people in **typing**.
+
 ![Morse Code](/static/morse.png)
+
 * It also provide **Audio feedback** whenever a **letter is completed**.
 * A **Screen Reader** help them to follow on the screen.
 
