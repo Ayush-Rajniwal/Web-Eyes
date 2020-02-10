@@ -28,5 +28,9 @@ WebEyes is an initiative to provide a tool to blind people to make the web more 
     4. **Swipe UP/Down** with **2 fingers** to **read links and text on a page**.
     5. **Tap** with **2 fingers** to **open a link**.
     6. **Swipe Left/Right** with **2 fingers** to go **back to previous page or to go forward**.
-
+    
 ## All Suggestions are welcome 😀🌈. 
+    
+### Click to view [LICENSE](https://github.com/Ayush-Rajniwal/Web-Eyes/blob/master/LICENSE)
+
+
