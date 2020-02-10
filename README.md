@@ -17,7 +17,15 @@ WebEyes is an initiative to provide a tool to blind people to make the web more 
 * A **Screen Reader** help them to follow on the screen.
 
 ## How To Use
+* **Run Web-Eye.exe**
+    -  A link will appear. 
+    -  Open that link in your phone.
+
+    ![Desktop](/static/desktop.png)
+
 * **Interface**
+    - Once you open the link in your phone, you will see the below screen.
+    - Dash and Dot can be use to type in google search feild.
 
     ![Remote](/static/remote.png)
 
