@@ -1,7 +1,7 @@
 # Web-Eyes
 The web is an essential part of our life, but there exist a large number of people who cannot access the web due to there physical disability.
 
-WebEyes is an initiative to provide a tool to blind people to make the web more accessible to them.
+WebEyes is a tool to help blind people to make web more accessible to them.
 
 ## Installation
 1. You should have [Chrome](https://www.google.com/intl/en_uk/chrome/) installed on your system.
